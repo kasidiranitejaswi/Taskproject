@@ -1,0 +1,41 @@
+<div class="card m-3">
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Name</label>
+                    <input type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-valid': submitted && f.Name.errors }" />
+                    <div *ngIf="submitted && f.Name.errors" class="valid-feedback">
+                         <!-- <div *ngIf="f.Name.errors.required">Name is required</div>  -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-valid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="valid-feedback">
+                     <!-- <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>  -->
+                </div>
+            </div>
+            <div class="form-group col-5">
+                <label>Address</label>
+                <div formArrayName="Address" *ngFor="let item of registerForm.get('Address').controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <input type="text" formControlName="Address" class="form-control" [ngClass]="{ 'is-valid': submitted && f.Address.errors }">
+                        <div *ngIf="submitted && f.Address.errors" class="valid-feedback">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mr-1" (click)="onSubmit()">Submit</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+
+    </div>
+</div> 
