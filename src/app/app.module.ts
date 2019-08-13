@@ -7,6 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormvalidationComponent } from './formvalidation/formvalidation.component';
 import { UsersComponent } from './users/users.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule} from 'ngx-pagination';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
     imports: [
@@ -14,8 +18,14 @@ import { UsersComponent } from './users/users.component';
         ReactiveFormsModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NgxPaginationModule,
+        MatPaginatorModule
       
+    ],
+    exports:[
+        MatPaginatorModule
     ],
     declarations: [
         AppComponent,

@@ -1,0 +1,36 @@
+.body{
+    /* background-image: url("/assets/images/bgimage.jpg"); */
+    background-image: url("/assets/images/1116146294-login-page-background-image-112.jpg");
+    height:100%;
+    margin: 0;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.container{
+    padding-top: 29px;
+    padding-bottom: 10px;
+    padding-left: 389px;
+    padding-right: 10px;
+    margin: 20px 20px 30px 93px;
+} 
+
+.btn-primary{
+    color:lightcoral;
+    background-color: black;
+}
+
+.btn-secondary{
+    margin-left: 5px;
+}
+
+.form-group{
+    color:white
+}
+
+.form-control{
+    height: 35px;
+    padding: 6px 2px;
+    background-color: lightgrey;
+}

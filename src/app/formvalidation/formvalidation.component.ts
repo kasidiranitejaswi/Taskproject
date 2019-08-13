@@ -16,6 +16,9 @@ export class FormvalidationComponent implements OnInit {
     submitted = false;
     orderForm: FormGroup;
     Address: FormArray;
+    params={
+      
+    }
   
   constructor(private formBuilder: FormBuilder,private router : Router,private usersService: UsersService) { }
 
@@ -33,16 +36,11 @@ export class FormvalidationComponent implements OnInit {
     this.getData()
   }
   
-
-  addItem(): void {
+addItem(): void {
     this.Address = this.registerForm.get('Address') as FormArray;
     this.Address.push(this.createItem());
     console.log( this.Address)
   } 
-
-  
-
-
 
 createItem(): FormGroup {
 
@@ -54,7 +52,6 @@ createItem(): FormGroup {
   };
 
 get f() { return this.registerForm.controls; }
-
 
 onSubmit() {
     this.submitted = true;
@@ -80,7 +77,7 @@ onReset() {
 
 getData(){
   console.log('hi');
-  this.usersService.getData()
+  this.usersService.getData(this.params)
   .subscribe((res)=>{
    console.log(res);
     

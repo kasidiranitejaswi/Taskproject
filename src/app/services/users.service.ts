@@ -15,8 +15,8 @@ export class UsersService {
   // sendingData(data){
 
   // }
-getData(){
-  return this.http.get(environment.apiURl + '/api/users')
+getData(params?){
+  return this.http.get(environment.apiURl + '/api/users',{params:params})
 .pipe(map(res => res));
 
 
