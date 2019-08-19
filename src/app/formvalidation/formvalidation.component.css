@@ -16,6 +16,11 @@
     margin: 20px 20px 30px 93px;
 } 
 
+.phonenumber{
+    color:lightcoral;
+    background-color: black;
+}
+
 .btn-primary{
     color:lightcoral;
     background-color: black;

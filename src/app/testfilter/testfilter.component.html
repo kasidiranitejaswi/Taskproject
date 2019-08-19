@@ -1,0 +1,15 @@
+<!-- <p>testfilter works!</p> -->
+<div class="container">
+    <h1 style="text-align:center">Using Search filter</h1>
+    <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox">
+
+    <table *ngFor="let emp of customerData | filter: {name: searchText, Age:searchText }; let i=index;">
+        <tr>
+            <td style="width: 10%;">{{i +1}}</td>
+            <td style="width: 10%;">{{emp.name}}</td>
+            <td style="width: 10%;">{{emp.Age}}</td>
+            <!-- <td style="width: 15%;">{{emp.blog}}</td> -->
+        </tr>
+    </table>
+</div>
+<button type="submit" class="btn btn-primary mr-1" (click)="next()">Next</button>

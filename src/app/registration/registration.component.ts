@@ -1,0 +1,95 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup,  FormBuilder,  Validators, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
+
+@Component({
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
+})
+
+export class RegistrationComponent implements OnInit {
+  angForm: FormGroup;
+  submitted = false;
+  // orderForm: FormGroup;
+  phone: FormArray;
+  address: FormArray;
+  params={
+  
+  }
+  
+  constructor( private fb: FormBuilder, private formBuilder: FormBuilder,private router : Router,private usersService: UsersService) {
+     this.createForm();
+   }
+
+  ngOnInit() {
+    this.angForm = this.formBuilder.group({
+            
+      name: ['', Validators.required],
+      
+      email: ['', [Validators.required, Validators.email]],
+
+      phone: this.formBuilder.array([this.createNumber()]),
+
+      address: this.fb.array([this.createItem()]) 
+  });
+   console.log(this.angForm)
+   this.getData()
+  };
+
+  addItem()  {
+    this.phone = this.angForm.get('phone') as FormArray;
+    this.phone.push(this.createNumber());
+    console.log(this.phone);
+      this.address = this.angForm.get('address') as FormArray;
+      this.address.push(this.createItem());
+      console.log(this.address)
+    } 
+    
+    createNumber():FormGroup {
+      return this.formBuilder.group({
+        phone: ''        
+      })
+    };
+
+    createItem():FormGroup { 
+      return this.fb.group({    
+        address: ''
+      })      
+    };
+ 
+    get f() { return this.angForm.controls; }
+
+    onSubmit() {
+      this.submitted = true;
+      console.log(this.angForm);
+      if (this.angForm.valid) {
+      // return;
+      console.log(this.angForm.value);
+      this.router.navigate(['/filt'])
+      }
+  }
+
+  createForm() {
+    this.angForm = this.fb.group({
+       name: ['', Validators.required ],
+       address: ['', Validators.required ]
+    });
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.angForm.reset();
+}
+
+getData(){
+  // console.log('hi');
+  this.usersService.getData(this.params)
+ .subscribe((res)=>{
+  console.log(res);
+  }
+ ) 
+}
+
+}

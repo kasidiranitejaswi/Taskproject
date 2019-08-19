@@ -1,18 +1,32 @@
-<div style="text-align:center" class="container">
-    <div class="row col-md-12">
-       <div *ngFor = "let data of usersData | paginate: { itemsPerPage: params.per_page, currentPage: params.page,totalItems:total }">
-          <img src={{data.avatar}}>
-          <p>firstname:{{data.first_name}}</p>
-          <p>lastname:{{data.last_name}}</p>
-          <p>email:{{data.email}}</p><br><hr>
+<!-- <div class="container">
+   <div class="form-group col-xs-4">
+      <input type="search" [(ngModel)]="list.find" name="list" #list="ngModel" class="form-control" placeholder="Search">
+   </div>
+   <div class="col-xs-12 text-center" style="padding-top:20px;">
+      <div class="col-sm-4 colo-xs-6 image" *ngFor="let names of list | filter:list.find">
+         <img src="{{list.poster}}" height="350px" width="100%">
+         <div class="title">{{list.Name}}</div>
+      </div>
+   </div>
+   </div> -->
+   <h1 style="text-align:center">Calling Third Party API</h1>
+   <div style="text-align:center" class="container">
+       <div class="row col-md-12">
+           <div *ngFor="let data of usersData | paginate: { itemsPerPage: params.per_page, currentPage: params.page,totalItems:total }">
+               <img src={{data.avatar}}>
+               <p>firstname:{{data.first_name}}</p>
+               <p>lastname:{{data.last_name}}</p>
+               <p>email:{{data.email}}</p>
+               <br>
+               <hr>
+           </div>
        </div>
-    </div>
    </div>
    <!-- <mat-paginator [length]="params.total"
-              [pageSize]="params.per_page"
-              (page)="page = $event" (click)="pageChange()">
-</mat-paginator> -->
-
-<div class="pull-right">
-      <pagination-controls (pageChange)="params.page = $event" (click)="pageChange()"></pagination-controls>
-      </div>
+                  [pageSize]="params.per_page"
+                  (page)="page = $event" (click)="pageChange()">
+      </mat-paginator> -->
+   
+   <div class="pull-right">
+       <pagination-controls (pageChange)="params.page = $event" (click)="pageChange()"></pagination-controls>
+   </div>

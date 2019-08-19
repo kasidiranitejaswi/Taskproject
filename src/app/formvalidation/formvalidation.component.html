@@ -1,49 +1,59 @@
 <div class="body">
-<div class="container">
-<div class="row">
-<div class="col-lg-6"> 
-<div class="card m-3">
-    <div class="card-body">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card m-3">
+                    <div class="card-body">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <div class="form-row">
+                                <div class="form-group col-5">
+                                    <label>Name</label>
+                                    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-valid': submitted && f.name.errors }" required/>
+                                    <div *ngIf="submitted && f.name.errors" class="valid-feedback">
+                                        <div *ngIf="f.Name.errors.required">Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="form-row">
-                <div class="form-group col-5">
-                    <label>Name</label>
-                    <input type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-valid': submitted && f.Name.errors }" required/>
-                    <div *ngIf="submitted && f.Name.errors" class="valid-feedback">
-                          <div *ngIf="f.Name.errors.required">Name is required</div> 
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-valid': submitted && f.email.errors }" required/>
+                                <div *ngIf="submitted && f.email.errors" class="valid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Please enter a valid email</div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group col-5">
+                                <label>Ph Number</label>
+                                <div formArrayName="Phnumber" *ngFor="let item of registerForm.get('Phnumber').controls; let i = index;">
+                                    <div [formGroupName]="i">
+                                        <input type="text" formControlName="Phnumber" class="form-control" [ngClass]="{ 'is-valid': submitted && f.Phnumber.errors }" required>
+                                        <div *ngIf="submitted && f.Phnumber.errors" class="valid-feedback"></div>
+                                         <button class="phonenumber" (click)="addnumber()">Add Numbers</button> 
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group col-5">
+                                <label>Address</label>
+                                <div formArrayName="Address" *ngFor="let item of registerForm.get('Address').controls; let i = index;">
+                                    <div [formGroupName]="i">
+                                        <input type="text" formControlName="Address" class="form-control" [ngClass]="{ 'is-valid': submitted && f.Address.errors }" required>
+                                        <div *ngIf="submitted && f.Address.errors" class="valid-feedback"></div>                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary mr-1" (click)="onSubmit()">Submit</button>
+                                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-valid': submitted && f.email.errors }" required/>
-                <div *ngIf="submitted && f.email.errors" class="valid-feedback">
-                      <div *ngIf="f.email.errors.required">Email is required</div>
-                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div> 
-                </div>
-            </div>
-            <div class="form-group col-5">
-                <label>Address</label>
-                <div formArrayName="Address" *ngFor="let item of registerForm.get('Address').controls; let i = index;">
-                    <div [formGroupName]="i">
-                        <input type="text" formControlName="Address" class="form-control" [ngClass]="{ 'is-valid': submitted && f.Address.errors }" required>
-                        <div *ngIf="submitted && f.Address.errors" class="valid-feedback">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary mr-1" (click)="onSubmit()">Submit</button>
-                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
-            </div>
-        </form>
-
+        </div>
     </div>
-</div>
-</div>
-</div> 
-</div>
 </div>

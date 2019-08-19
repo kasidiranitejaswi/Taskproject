@@ -1,0 +1,41 @@
+<div class="container">
+  <section class="col-xs-12">
+      <div class="col-xs-5 login-section">
+          <h1 class="login-heading">LOGIN</h1>
+          <P class="login-paragraph">Enter your Emailid & password</P>
+          <form #regForm='ngForm' (ngSubmit)="Register(regForm)">
+              <div class="form-group">
+                  <input type="email" [(ngModel)]="logindata.email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="EMAIL" id="name" name="email" #email="ngModel" required>
+              </div>
+              <div [hidden]="email.dirty || email.untouched" class="error">please fill this field</div>
+              <div *ngIf=logindata.email [hidden]="email.untouched || email.valid " class="error">Please enter a valid email </div>
+
+              <div class="form-group">
+                  <input type="password" [(ngModel)]="logindata.password" class="form-control" placeholder="PASSWORD" name="password" minlength="8" #password="ngModel" id="PassWord" required>
+              </div>
+              <div [hidden]="(password.dirty || password.untouched || password.invalid)" class="error">password is required
+              </div>
+              <div [hidden]="password.valid || password.untouched " class="error">Password must be more than 8 characters</div>
+              <div class="col-xs-6">
+                  <input type="checkbox" id="checkBox">
+                  <label for="checkBox">Remeber me</label>
+              </div>
+              <div class="col-xs-6 text-right passwordSetting">
+                  <a routerLink="/forgotpassword">Forgot password?</a>
+              </div>
+              <div class="text-right">
+                  <button type="submit" [disabled]="!regForm.form.valid" (click)="Login()" class="btn btn-primary btn-lg setting-loginButton">LOGIN</button>
+              </div>
+          </form>
+          <div class="text-center">
+              <p class="singupAccountSetting">
+                  Don't have an account?&nbsp;
+                  <a routerLink="/signup">Signup</a>
+              </p>
+          </div>
+
+      </div>
+
+  </section>
+
+</div>

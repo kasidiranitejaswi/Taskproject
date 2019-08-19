@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
+// import { MovieService } from '../movie/service';
 // import {MatPaginatorModule} from '@angular/material/paginator';
 // import {PageEvent} from '@angular/material/paginator';
 
@@ -12,6 +13,8 @@ import { UsersService } from '../services/users.service';
 export class UsersComponent implements OnInit {
 
  usersData:any;
+//  public first_name:any;
+//  public last_name:any;
  public params = {
   per_page: 3,
   page: 1,
@@ -23,6 +26,10 @@ export class UsersComponent implements OnInit {
 constructor(private usersService: UsersService) {
   // console.log('1234')
  }
+
+//  list = {
+//    find:''
+//  }
 
   ngOnInit() {
     // console.log('ijhuihi');

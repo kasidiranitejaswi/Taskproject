@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 
@@ -15,12 +14,13 @@ export class FormvalidationComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
     orderForm: FormGroup;
+    Phnumber: FormArray;
     Address: FormArray;
     params={
       
     }
   
-  constructor(private formBuilder: FormBuilder,private router : Router,private usersService: UsersService) { }
+  constructor(private fb: FormBuilder, private formBuilder: FormBuilder,private router : Router,private usersService: UsersService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -29,27 +29,41 @@ export class FormvalidationComponent implements OnInit {
       
       email: ['', [Validators.required, Validators.email]],
 
-      Address: this.formBuilder.array([this.createItem()  ]) 
+      // Phnumber: this.formBuilder.array([this.createNumber()]),
+
+      Address: this.formBuilder.array([this.createItem()]) 
   });
    console.log(this.registerForm)
-   console.log('ijhuihi');
-    this.getData()
+   this.getData()
   }
-  
-addItem(): void {
+
+addItem()  {
+  // this.Phnumber = this.registerForm.get('Phnumber') as FormArray;
+  // this.Phnumber.push(this.createNumber());
+  // console.log(this.Phnumber);
     this.Address = this.registerForm.get('Address') as FormArray;
     this.Address.push(this.createItem());
-    console.log( this.Address)
+    console.log(this.Address)
   } 
 
-createItem(): FormGroup {
+  // createNumber():FormGroup {
+  //   return this.formBuilder.group({
+  //     Phnumber: '',
+     
+  //   })
+      
+  // }; 
 
+createItem():FormGroup {
     return this.formBuilder.group({
-        Address: ''
-    });
-   
-   
+     
+      Address: ''
+    })
+      
   };
+
+
+
 
 get f() { return this.registerForm.controls; }
 
@@ -60,7 +74,8 @@ onSubmit() {
     if (this.registerForm.valid) {
     //return;
     console.log(this.registerForm.value);
-    this.router.navigate(['/users'])
+    this.router.navigate(['/filt'])
+    // this.router.navigate(['/users'])
     // this.usersService.sendingData(this.registerForm)
     // .subscribe((response)=>{
     //   console.log();
@@ -76,13 +91,14 @@ onReset() {
 }
 
 getData(){
-  console.log('hi');
+  // console.log('hi');
   this.usersService.getData(this.params)
   .subscribe((res)=>{
    console.log(res);
     
   })
 }
+
 
 
 }
