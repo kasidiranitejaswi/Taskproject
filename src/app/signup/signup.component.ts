@@ -25,13 +25,19 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
   signUp(){
-    this.registerservice.signup(this.userdata)
-    .subscribe(
-      (response)=> {
-        console.log(response)
-      }
-   )
-   this.route.navigate(['/filt']);
+    // this.registerservice.signup(this.userdata)
+    localStorage.setItem('Fname', this.userdata.Fname);
+    localStorage.setItem('Lname', this.userdata.Lname);
+    localStorage.setItem('email', this.userdata.email);
+    localStorage.setItem('phonenumber', this.userdata.phonenumber);
+    localStorage.setItem('password', this.userdata.password);
+  //   .subscribe(
+  //     (response)=> {
+  //       localStorage.setItem('Fname', 'userdata.Fname');
+  //       console.log(response)
+  //     }
+  //  )
+   this.route.navigate(['/filt']); 
    //this.route.navigate(['/Login']);
   }
   

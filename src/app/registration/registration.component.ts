@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,  FormBuilder,  Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 
@@ -15,81 +15,92 @@ export class RegistrationComponent implements OnInit {
   // orderForm: FormGroup;
   phone: FormArray;
   address: FormArray;
-  params={
-  
+  params = {
+
   }
-  
-  constructor( private fb: FormBuilder, private formBuilder: FormBuilder,private router : Router,private usersService: UsersService) {
-     this.createForm();
-   }
+
+  constructor(private fb: FormBuilder, private formBuilder: FormBuilder, private router: Router, private usersService: UsersService) {
+      this.createForm();
+  }
 
   ngOnInit() {
-    this.angForm = this.formBuilder.group({
-            
-      name: ['', Validators.required],
-      
-      email: ['', [Validators.required, Validators.email]],
+      this.angForm = this.formBuilder.group({
 
-      phone: this.formBuilder.array([this.createNumber()]),
+          name: ['', Validators.required],
 
-      address: this.fb.array([this.createItem()]) 
-  });
-   console.log(this.angForm)
-   this.getData()
+          email: ['', [Validators.required, Validators.email]],
+
+          // phone: ['', Validators.required],
+
+          // address: ['', Validators.required],
+
+          phone: this.formBuilder.array([this.createNumber()]),
+
+          address: this.fb.array([this.createItem()])
+      });
+      console.log(this.angForm)
+      this.getData()
   };
 
-  addItem()  {
-    this.phone = this.angForm.get('phone') as FormArray;
-    this.phone.push(this.createNumber());
-    console.log(this.phone);
+  addItem() {
+      this.phone = this.angForm.get('phone') as FormArray;
+      this.phone.push(this.createNumber());
+      console.log(this.phone);
       this.address = this.angForm.get('address') as FormArray;
       this.address.push(this.createItem());
       console.log(this.address)
-    } 
-    
-    createNumber():FormGroup {
+  }
+
+  createNumber(): FormGroup {
       return this.formBuilder.group({
-        phone: ''        
+          phone: ''
       })
-    };
+  };
 
-    createItem():FormGroup { 
-      return this.fb.group({    
-        address: ''
-      })      
-    };
- 
-    get f() { return this.angForm.controls; }
+  createItem(): FormGroup {
+      return this.fb.group({
+          address: ''
+      })
+  };
 
-    onSubmit() {
+  get f() {
+      return this.angForm.controls;
+  }
+
+  onSubmit() {
+      localStorage.setItem('name', this.angForm.get('name').value);
+      localStorage.setItem('email', this.angForm.get('email').value);
+      localStorage.setItem('phone', this.angForm.get('phone').value[0].phone);
+      localStorage.setItem('address', this.angForm.get('address').value[0].address);
       this.submitted = true;
       console.log(this.angForm);
       if (this.angForm.valid) {
-      // return;
-      console.log(this.angForm.value);
-      this.router.navigate(['/filt'])
+          // return;
+          console.log(this.angForm.value);
+          this.router.navigate(['/filt'])
       }
   }
 
   createForm() {
-    this.angForm = this.fb.group({
-       name: ['', Validators.required ],
-       address: ['', Validators.required ]
-    });
+      this.angForm = this.fb.group({
+          name: ['', Validators.required],
+          address: ['', Validators.required]
+      });
   }
 
   onReset() {
-    this.submitted = false;
-    this.angForm.reset();
-}
-
-getData(){
-  // console.log('hi');
-  this.usersService.getData(this.params)
- .subscribe((res)=>{
-  console.log(res);
+      this.submitted = false;
+      this.angForm.reset();
   }
- ) 
-}
 
+  getData() {
+      // console.log('hi');
+
+      //  localStorage.setItem('email', this.angForm.get("email").value);
+      this.usersService.getData(this.params)
+          .subscribe((res) => {
+              // localStorage.setItem('phone', this.angForm.get('phone').value);
+              console.log(res);
+          })
+  }
 }

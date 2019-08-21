@@ -1,0 +1,24 @@
+.navbar-brand{
+    padding: 0px 0px 0px 0px;
+}
+
+.container-fluid{
+    background-color: goldenrod;
+}
+
+li>.names {
+    color:black;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .bg {
+    /* background-image: url("assets/images/bgcover.jpg"); */
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

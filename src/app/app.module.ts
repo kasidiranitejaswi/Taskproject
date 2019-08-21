@@ -20,6 +20,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { SignupComponent } from './signup/signup.component'; 
 import { RegisterService} from './register.service'
 import { RegistrationComponent } from './registration/registration.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { RegistrationComponent } from './registration/registration.component';
         LoginComponent,
         ResetpasswordComponent,
         SignupComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        NavbarComponent
         
     ],
     providers: [RegisterService],

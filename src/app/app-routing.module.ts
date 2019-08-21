@@ -8,9 +8,12 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { LoginComponent } from './login/login.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { SignupComponent } from './signup/signup.component'; 
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = ([
-  { path : '' , redirectTo : '/registration' , pathMatch : 'full'},
+  { path : '' , redirectTo : '/navbar' , pathMatch : 'full'},
+  { path : 'navbar' , component : NavbarComponent },
+  // { path : '' , redirectTo : '/registration' , pathMatch : 'full'},
   { path : 'registration' , component : RegistrationComponent },
   { path : '' , redirectTo : '/form' , pathMatch : 'full'},
   // { path : "", component: SignupComponent},
