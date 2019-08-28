@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURl: 'https://reqres.in'
+  // apiURl: 'https://reqres.in'
+  apiURl: 'http://13.233.161.206:3001/api/v1.0'
 };
 
 /*

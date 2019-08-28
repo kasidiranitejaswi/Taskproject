@@ -5,13 +5,28 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a class="names" routerLink="/signup">Signup</a></li>
+          <!-- <li><a class="names" routerLink="/signup">Signup</a></li>
           <li><a class="names" routerLink="/Login">Login</a></li>
           <li><a class="names" routerLink="/registration">Registration</a></li>
+          <li><a class="names" routerLink="/formarrays">Formarrays</a></li> -->
+          <li class="dropdown">
+              <a routerLink="/auth" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Auth
+                  <span class="caret"></span>
+
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dLabel">
+                  <li>
+                      <a routerLink="/auth/authsignup">Signup</a>                      
+                  </li>
+                  <li>
+                      <a routerLink="/auth/authlogin">Login</a>                    
+                  </li>
+                  <li>
+                    <a style="cursor:point" (click)="logout()">Logout</a>
+                  </li>
+              </ul>
+            </li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- <div class="bg">
-    <img alt="image" src="assets/images/bgcover.jpg">
-  </div> -->

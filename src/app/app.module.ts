@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-// import { RouterConfigLoader } from '@angular/router/src/router_config_loader';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormvalidationComponent } from './formvalidation/formvalidation.component';
@@ -21,7 +18,9 @@ import { SignupComponent } from './signup/signup.component';
 import { RegisterService} from './register.service'
 import { RegistrationComponent } from './registration/registration.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { FormarraysComponent } from './formarrays/formarrays.component';
+import { MatFormFieldModule,MatInputModule} from '@angular/material';
+// import { AuthGuard } from './auth.guard';
 
 @NgModule({
     imports: [
@@ -32,11 +31,15 @@ import { NavbarComponent } from './navbar/navbar.component';
         HttpClientModule,
         BrowserAnimationsModule,
         NgxPaginationModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule
       
     ],
     exports:[
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule
     ],
     declarations: [
         AppComponent,
@@ -49,8 +52,8 @@ import { NavbarComponent } from './navbar/navbar.component';
         ResetpasswordComponent,
         SignupComponent,
         RegistrationComponent,
-        NavbarComponent
-        
+        NavbarComponent,
+        FormarraysComponent,
     ],
     providers: [RegisterService],
     bootstrap: [AppComponent]

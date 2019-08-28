@@ -1,0 +1,74 @@
+<!-- <p>authsignup works!</p> -->
+
+<div class="container">
+    <h1 style="text-align:center">Auth signup Page</h1>
+
+    <form [formGroup]="angForm" (ngSubmit)="onSignup()">
+
+        <div class="form-group col-5">
+            <label>Name</label>
+            <div formArrayName="name" *ngFor="let item of angForm.get('name').controls; let i = index;">
+                <div [formGroupName]="i">
+                    <div class="row">
+                        <div class="col-sm-4 inline">
+                            <input type="text" Placeholder="firstname" formControlName="firstname" class="form-control" [ngClass]="{ 'is-valid': submitted && f.name.errors }" required/>
+                        </div>
+                        <div class="col-sm-4 inline">
+                            <input type="text" Placeholder="lastname" formControlName="lastname" class="form-control" [ngClass]="{ 'is-valid': submitted && f.name.errors }" required/>
+                        </div>
+                        <div *ngIf="submitted && f.name.errors" class="valid-feedback">
+                            <div *ngIf="f.name.errors.required">Name is required</div>
+                        </div>       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-5">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-valid': submitted && f.email.errors }" required/>
+                <div *ngIf="submitted && f.email.errors" class="valid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Please enter a valid email</div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="form-row">
+        <div class="form-group col-5">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+    </div>
+            <div class="form-group col-5">
+                <label>Mobile</label>
+                <div formArrayName="mobile" *ngFor="let item of angForm.get('mobile').controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <div class="row">
+                            <div class="col-sm-4 inline">
+                                <input type="number" Placeholder="countrycode" formControlName="countrycode" class="form-control" [ngClass]="{ 'is-valid': submitted && f.mobile.errors }" required/>
+                            </div>
+                            <div class="col-sm-4 inline">
+                                <input type="number" Placeholder="phnumber" formControlName="phnumber" class="form-control" [ngClass]="{ 'is-valid': submitted && f.mobile.errors }" required/>
+                            </div>
+                            <div *ngIf="submitted && f.mobile.errors" class="valid-feedback">
+                                <div *ngIf="f.mobile.errors.required">Number is required</div>
+                                <div *ngIf="f.mobile.errors.required">Please enter a valid Number</div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div>
+            <button class="btn btn-success" type="Signup" (click)="onSignup()">Signup</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
+        </div>
+    </form>
+</div>       
